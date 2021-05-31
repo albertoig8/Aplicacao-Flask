@@ -23,4 +23,11 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+
+    # pagina simples com Olá mundo
+    @app.route('/hello')
+    def hello():
+        return 'Olá, Mundo!'
+
+    return app
     
