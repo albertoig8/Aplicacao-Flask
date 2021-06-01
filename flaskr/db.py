@@ -21,3 +21,18 @@ def close_db(e=None):
 
     if db is not None:
         db.close()
+
+
+def init_db():
+    db = get_db()
+
+    with current_app.open_resurce('schema.sql') as f:
+        db.executescript(f.read().decode('utf8'))
+
+
+@click.command('init-db')
+@with_appcontext
+def init_db_command():
+    """Limpar os dados existentes e criar novas tabelas."""
+    init_db()
+    click.echo('O banco de dados inicializou.')
