@@ -24,10 +24,10 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # pagina simples com Olá mundo
-    @app.route('/hello')
-    def hello():
-        return 'Olá, Mundo!'
+
+    # código existente omitido
+    from . import db
+    db.init_app(app)
 
     return app
     
